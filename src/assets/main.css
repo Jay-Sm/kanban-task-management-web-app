@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @apply text-[16px];
+}
+
+html {
+  @apply h-screen;
+}
+
+body {
+  @apply h-full;
+}
+
+#app {
+  @apply h-full;
+}
