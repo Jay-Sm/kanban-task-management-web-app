@@ -10,7 +10,7 @@ describe('App.vue', () => {
     expect(wrapper.html()).toMatchSnapshot()
   })
 
-  test('switches theme', () => {
+  test('Switches theme', () => {
     const wrapper = mount(App)
     const button = wrapper.find('.toggle-btn')
     button.trigger('click')
@@ -18,5 +18,5 @@ describe('App.vue', () => {
     expect(document.querySelector('html').classList).toContain('dark')
   })
 
-  
+
 })

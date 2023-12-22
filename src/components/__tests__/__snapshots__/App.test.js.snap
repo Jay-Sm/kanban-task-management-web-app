@@ -4,9 +4,9 @@ exports[`App.vue > Renders properly 1`] = `
 "<button class="toggle-btn">Toggle</button>
 <div class="wrapper">
   <header>
-    <div class="logo-container"> Logo Here </div>
+    <div class="logo-container"><img class="hidden" src="/src/assets/images/logo-light.svg"><img class="" src="/src/assets/images/logo-dark.svg"></div>
     <div class="nav">
-      <h1>Title Here</h1>
+      <h1 class="ml-[2rem]">Title Here</h1>
       <div>item2</div>
     </div>
   </header>
