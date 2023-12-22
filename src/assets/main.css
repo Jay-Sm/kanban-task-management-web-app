@@ -2,18 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  @apply duration-300
+}
+
 :root {
-  @apply text-[16px];
+  @apply text-[16px] ;
 }
 
 html {
-  @apply h-screen ;
+  @apply h-screen;
 }
 
 body {
   @apply h-full bg-background dark:bg-background-dark text-black dark:text-white;
-  
-  @apply duration-300;
   transition-property: background-color, color;
 }
 
