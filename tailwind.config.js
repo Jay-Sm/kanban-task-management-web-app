@@ -24,7 +24,8 @@ export default {
         settingsBackground: {
           DEFAULT: '#e4ebfa',
           dark: '#20212c'
-        }
+        },
+        textColor: '#828fa3'
       },
       fontFamily: {
         jakarta: ['Plus Jakarta Sans']
