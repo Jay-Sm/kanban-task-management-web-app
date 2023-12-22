@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App.vue > Renders properly 1`] = `
+"<button class="toggle-btn">Toggle</button>
+<div>
+  <h1 class="text-4xl p-5">App View</h1>
+</div>"
+`;

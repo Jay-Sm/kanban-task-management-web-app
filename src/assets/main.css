@@ -7,11 +7,14 @@
 }
 
 html {
-  @apply h-screen;
+  @apply h-screen ;
 }
 
 body {
-  @apply h-full;
+  @apply h-full bg-background-light dark:bg-background-dark text-black dark:text-white;
+  
+  @apply duration-300;
+  transition-property: background-color, color;
 }
 
 #app {
