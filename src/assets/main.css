@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  @apply h-full bg-background-light dark:bg-background-dark text-black dark:text-white;
+  @apply h-full bg-background dark:bg-background-dark text-black dark:text-white;
   
   @apply duration-300;
   transition-property: background-color, color;

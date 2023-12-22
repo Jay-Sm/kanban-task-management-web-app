@@ -1,8 +1,17 @@
 <template>
   <button class="toggle-btn" @click="swtichTheme()">Toggle</button>
 
-  <div>
-    <h1 class="text-4xl p-5">App View</h1>
+  <div class="wrapper flex flex-col">
+    <header>
+      <div class="logo-container">
+        Logo Here
+      </div>
+      <div class="nav">
+        <h1>Title Here</h1>
+
+        <div>item2</div>
+      </div>
+    </header>
   </div>
 </template>
 
@@ -22,7 +31,21 @@ function swtichTheme() {
 </script>
 
 <style>
+/* To Remove Later */
 .toggle-btn {
-  @apply fixed top-2 right-12 w-min h-min border-2 rounded-full flex justify-center items-center
+  @apply fixed bottom-12 left-12 w-min h-min border-2 rounded-full flex justify-center items-center
+}
+
+/* Header */
+.wrapper>header {
+  @apply h-[6rem] bg-themeColor dark:bg-themeColor-dark flex flex-row
+}
+
+header .logo-container {
+  @apply w-[23.3rem] min-w-max h-full border-r border-borderColor dark:border-borderColor-dark
+}
+
+header>.nav {
+  @apply flex flex-row items-center justify-between w-full
 }
 </style>

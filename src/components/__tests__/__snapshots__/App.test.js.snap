@@ -2,7 +2,10 @@
 
 exports[`App.vue > Renders properly 1`] = `
 "<button class="toggle-btn">Toggle</button>
-<div>
-  <h1 class="text-4xl p-5">App View</h1>
+<div class="flex flex-col">
+  <header class="h-[6rem] bg-themeColor dark:bg-themeColor-dark flex flex-row">
+    <div class="w-[18.75rem] h-full border-r border-borderColor dark:border-borderColor-dark"> Logo Here </div>
+    <h1>Title Here</h1>
+  </header>
 </div>"
 `;

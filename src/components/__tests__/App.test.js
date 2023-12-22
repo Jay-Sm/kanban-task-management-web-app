@@ -17,4 +17,6 @@ describe('App.vue', () => {
 
     expect(document.querySelector('html').classList).toContain('dark')
   })
+
+  
 })
