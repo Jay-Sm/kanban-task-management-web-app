@@ -4,10 +4,11 @@
   <div class="wrapper">
     <header>
       <div class="logo-container">
-        Logo Here
+        <img :class="{ 'hidden': !preferDark }" src="./assets/images/logo-light.svg">
+        <img :class="{ 'hidden': preferDark }" src="./assets/images/logo-dark.svg">
       </div>
       <div class="nav">
-        <h1>Title Here</h1>
+        <h1 class="ml-[2rem]">Title Here</h1>
 
         <div>item2</div>
       </div>
@@ -51,7 +52,11 @@ function swtichTheme() {
 }
 
 header .logo-container {
-  @apply w-[23.3rem] min-w-max h-full border-r border-borderColor dark:border-borderColor-dark
+  @apply min-w-[18.75rem] h-full border-r border-borderColor dark:border-borderColor-dark flex items-center
+}
+
+header .logo-container img {
+  @apply ml-[2rem]
 }
 
 header>.nav {
@@ -59,12 +64,12 @@ header>.nav {
 }
 
 /* Main & Sidebar */
-.wrapper>.main{
+.wrapper>.main {
   @apply h-full w-full flex flex-row
 }
 
 .sidebar {
-  @apply w-[23.3rem] min-w-max h-full bg-themeColor dark:bg-themeColor-dark border-r border-borderColor dark:border-borderColor-dark
+  @apply min-w-[18.75rem] h-full bg-themeColor dark:bg-themeColor-dark border-r border-borderColor dark:border-borderColor-dark
 }
 
 .kanban {
