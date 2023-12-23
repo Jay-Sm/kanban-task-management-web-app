@@ -13,10 +13,8 @@ describe('App.vue', () => {
   test('Switches theme', () => {
     const wrapper = mount(App)
     const button = wrapper.find('.toggle-btn')
+    
     button.trigger('click')
-
     expect(document.querySelector('html').classList).toContain('dark')
   })
-
-
 })
