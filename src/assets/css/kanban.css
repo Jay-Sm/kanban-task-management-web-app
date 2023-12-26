@@ -4,7 +4,7 @@
 }
 
 .kanban {
-  @apply relative w-4/5 top-0 bottom-0 pt-[1.5rem] flex overflow-x-scroll;
+  @apply relative w-4/5 top-0 bottom-0 pt-[1.5rem] flex overflow-x-scroll overflow-y-scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -32,4 +32,8 @@
 .status-cards > div {
   @apply w-full h-[6.25rem] rounded-lg pt-[1.7rem] px-4 flex flex-col gap-y-2;
   @apply bg-background2 dark:bg-background2-dark border border-borderColor dark:border-borderColor-dark shadow-md dark:shadow-slate-700;
+}
+
+.status-cards-none {
+  @apply w-full h-4/5 border-2 border-borderColor border-dashed rounded-lg border-opacity-40
 }

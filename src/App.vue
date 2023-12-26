@@ -131,7 +131,7 @@
             <p>{{ status.name.toUpperCase() }} ({{ status.cards.length }})</p>
           </div>
 
-          <div class="status-cards">
+          <div v-if="status.cards.length > 0" class="status-cards">
             <div v-for="(card, index) in status.cards" :key="index">
               <p class="text-sm font-bold">
                 {{ card.title }}
@@ -142,6 +142,8 @@
               </p>
             </div>
           </div>
+
+          <div v-else class="status-cards-none"></div>
         </div>
       </div>
     </div>
@@ -217,22 +219,51 @@ const boards = ref([
     },
     ],
   },
-
   {
     title: 'Example Board 2',
-    statuses: ['To Do'],
-    cards: [
-      {
-        title: 'Example Card 2',
-        description: 'Example Description 2',
-        subtasks: [
-          { name: 'Example Subtask 3', done: false },
-          { name: 'Example Subtask 4', done: false }
-        ],
-        status: 'To Do'
-      }
-    ]
-  }
+    statuses: [{
+      name: 'To Do',
+      color: '#49c4e6',
+      cards: [
+        {
+          title: 'Example Card 2',
+          description: 'Example Description 2',
+          subtasks: [
+            { name: 'Example Subtask 1', done: false },
+            { name: 'Example Subtask 2', done: false }
+          ]
+        },
+        {
+          title: 'Example Card 2',
+          description: 'Example Description 2',
+          subtasks: [
+            { name: 'Example Subtask 1', done: false },
+            { name: 'Example Subtask 2', done: false }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'Doing',
+      color: '#8471f2',
+      cards: [
+        {
+          title: 'Example Card 2',
+          description: 'Example Description 2',
+          subtasks: [
+            { name: 'Example Subtask 1', done: false },
+            { name: 'Example Subtask 2', done: false }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'Done',
+      color: '#67e2ae',
+      cards: []
+    },
+    ],
+  },
 ])
 
 </script>
