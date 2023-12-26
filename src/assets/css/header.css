@@ -1,0 +1,37 @@
+/* Header */
+.wrapper>header {
+  @apply h-[6.9rem] bg-background2 dark:bg-background2-dark flex flex-row border-b border-borderColor dark:border-borderColor-dark
+}
+
+header .logo-container {
+  @apply min-w-[18.75rem] h-full border-r border-borderColor dark:border-borderColor-dark flex items-center
+}
+
+header .logo-container img {
+  @apply ml-[2rem]
+}
+
+.nav {
+  @apply flex flex-row items-center justify-between w-full
+}
+
+.nav h1 {
+  @apply ml-[2rem] font-bold text-2xl
+}
+
+.nav-buttons {
+  @apply flex flex-row items-center justify-between gap-x-4 mr-8 relative
+}
+
+.nav-dropdown {
+  @apply absolute w-full top-[115%] z-10 outline outline-1 outline-slate-300 rounded-lg flex flex-col justify-between py-3 gap-y-2;
+  @apply bg-background2 dark:bg-background2-dark dark:outline-none shadow dark:shadow-slate-700
+}
+
+.new-task {
+  @apply bg-themeColor hover:bg-themeColor-hover text-white py-3 px-5 rounded-full font-bold
+}
+
+.nav-settings {
+  @apply hover:bg-settingsBackground dark:hover:bg-settingsBackground-dark max-w-[1.3rem] py-1 rounded-full flex justify-center items-center
+}

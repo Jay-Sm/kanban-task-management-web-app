@@ -6,7 +6,7 @@
         <img :class="{ 'hidden': preferDark }" src="./assets/images/logo-dark.svg">
       </div>
       <div class="nav">
-        <h1>Title Here</h1>
+        <h1>{{ boards[currentBoard].title }}</h1>
 
         <div class="nav-buttons">
           <button class="new-task">
@@ -39,8 +39,8 @@
         </div>
 
         <div class="flex flex-col gap-y-2 mb-auto">
-          <button v-for="(item, index) in boardTitles" :key="index" @click="currentBoard = index" class="board-select"
-            :class="{ 'selected': item === boardTitles[currentBoard] }">
+          <button v-for="(board, index) in boards" :key="index" @click="currentBoard = index" class="board-select"
+            :class="{ 'selected': index === currentBoard }">
             <svg class="ml-7" fill="currentColor" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 
                 2.888 0 0 1 13.111 16H2.89A2.889 2.889 0 0 1 0 13.111V2.89Zm1.333 5.555v4.667c0 .859.697 
@@ -50,11 +50,11 @@
               </path>
             </svg>
             <p>
-              {{ item }}
+              {{ board.title }}
             </p>
           </button>
 
-          <button class="board-create" :disabled="boardTitles.length >= 3">
+          <button class="board-create" :disabled="boards.length >= 6">
             <svg class="ml-7" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
               <path fill="currentColor"
                 d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 2.888 0 0 1 
@@ -122,7 +122,11 @@
           <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
         </svg>
       </button>
-      <div class="kanban left-[18.75rem]">main content</div>
+      <div class="kanban left-[18.75rem]">
+        <div class="ml-[2rem]">
+          stuff here
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -150,110 +154,55 @@ function toggleSidebar() {
 
 // Board Logic
 const currentBoard = ref(0)
-const boardTitles = ref(['Example Board', 'Example Board 2', 'Example Board 3',])
+const boards = ref([
+  {
+    title: 'Example Board',
+    statuses: [{
+      name: 'To Do',
+      color: '#49c4e5'
+    },
+    {
+      name: 'Doing',
+      color: '#8471f2'
+    },
+    {
+      name: 'Done',
+      color: '#67e2ae'
+    },
+    ],
+    cards: [
+      {
+        title: 'Example Card 1',
+        description: 'Example Description 1',
+        subtasks: [
+          { name: 'Example Subtask 1', done: false },
+          { name: 'Example Subtask 2', done: false }
+        ],
+        status: 'To Do'
+      }
+    ]
+  },
 
-// watch(() => currentBoard.value, (newValue) => {
-//   if (newvalue >= 6) {
-    
-//   }
-// }, {immediate:true})
+  {
+    title: 'Example Board 2',
+    statuses: ['To Do'],
+    cards: [
+      {
+        title: 'Example Card 2',
+        description: 'Example Description 2',
+        subtasks: [
+          { name: 'Example Subtask 3', done: false },
+          { name: 'Example Subtask 4', done: false }
+        ],
+        status: 'To Do'
+      }
+    ]
+  }
+])
+
 </script>
 
 <style>
-.wrapper {
-  @apply h-full w-full flex flex-col overflow-x-hidden
-}
 
-/* Header */
-.wrapper>header {
-  @apply h-[6.9rem] bg-background2 dark:bg-background2-dark flex flex-row border-b border-borderColor dark:border-borderColor-dark
-}
 
-header .logo-container {
-  @apply min-w-[18.75rem] h-full border-r border-borderColor dark:border-borderColor-dark flex items-center
-}
-
-header .logo-container img {
-  @apply ml-[2rem]
-}
-
-.nav {
-  @apply flex flex-row items-center justify-between w-full
-}
-
-.nav h1 {
-  @apply ml-[2rem] font-bold text-2xl
-}
-
-.nav-buttons {
-  @apply flex flex-row items-center justify-between gap-x-4 mr-8 relative
-}
-
-.nav-dropdown {
-  @apply absolute w-full top-[115%] z-10 outline outline-1 outline-slate-300 rounded-lg flex flex-col justify-between py-3 gap-y-2;
-  @apply bg-background2 dark:bg-background2-dark dark:outline-none shadow dark:shadow-slate-700
-}
-
-.new-task {
-  @apply bg-themeColor hover:bg-themeColor-hover text-white py-3 px-5 rounded-full font-bold
-}
-
-.nav-settings {
-  @apply hover:bg-settingsBackground dark:hover:bg-settingsBackground-dark max-w-[1.3rem] py-1 rounded-full flex justify-center items-center
-}
-
-/* Main & Sidebar */
-.wrapper>.main {
-  @apply h-full w-full flex flex-row relative
-}
-
-.sidebar {
-  @apply absolute z-20 left-0 top-0 bottom-0 min-w-[18.75rem] flex flex-col justify-between;
-  @apply text-textColor bg-background2 dark:bg-background2-dark border-r border-borderColor dark:border-borderColor-dark;
-}
-
-.sidebar-hidden {
-  @apply -left-[18.75rem]
-}
-
-.board-number {
-  @apply h-[3.125rem] font-bold text-xs tracking-[0.2em] flex items-center
-}
-
-.board-select {
-  @apply w-[17.5rem] py-3 flex flex-row items-center gap-x-4 hover:bg-themeColor-hover hover:text-white rounded-r-full font-bold text-textColor
-}
-
-.board-select.selected {
-  @apply bg-themeColor text-white
-}
-
-.board-create {
-  @apply w-[17.5rem] py-3 flex flex-row items-center gap-x-4 font-bold text-themeColor hover:text-themeColor-hover disabled:opacity-45
-}
-
-.theme-toggle {
-  @apply mx-[1.5rem] py-3 rounded flex justify-center items-center gap-x-5 bg-background dark:bg-background-dark
-}
-
-.toggle-btn {
-  @apply w-[2.4rem] px-1 py-1 flex items-center rounded-full bg-textColor dark:bg-themeColor
-}
-
-.toggle-btn>div {
-  @apply w-[0.8rem] h-[0.8rem] rounded-full bg-white;
-  @apply dark:ml-[1.1rem] transition-all duration-300 ease-in-out
-}
-
-.sidebar-hide {
-  @apply mx-auto py-3 rounded flex justify-center items-center gap-x-4 font-bold hover:opacity-60
-}
-
-.sidebar-show {
-  @apply w-[3.65rem] py-[0.85rem] max-h-min rounded-r-full fixed bg-themeColor hover:bg-themeColor-hover bottom-[1.75rem] z-10
-}
-
-.kanban {
-  @apply w-full h-full relative;
-}
 </style>

@@ -1,0 +1,46 @@
+/* Sidebar */
+.sidebar {
+  @apply absolute z-20 left-0 top-0 bottom-0 min-w-[18.75rem] flex flex-col justify-between;
+  @apply text-textColor bg-background2 dark:bg-background2-dark border-r border-borderColor dark:border-borderColor-dark;
+}
+
+.sidebar-hidden {
+  @apply -left-[18.75rem]
+}
+
+.board-number {
+  @apply h-[3.125rem] font-bold text-xs tracking-[0.2em] flex items-center
+}
+
+.board-select {
+  @apply w-[17.5rem] py-3 flex flex-row items-center gap-x-4 hover:bg-themeColor-hover hover:text-white rounded-r-full font-bold text-textColor
+}
+
+.board-select.selected {
+  @apply bg-themeColor text-white
+}
+
+.board-create {
+  @apply w-[17.5rem] py-3 flex flex-row items-center gap-x-4 font-bold text-themeColor hover:text-themeColor-hover disabled:opacity-45
+}
+
+.theme-toggle {
+  @apply mx-[1.5rem] py-3 rounded flex justify-center items-center gap-x-5 bg-background dark:bg-background-dark
+}
+
+.toggle-btn {
+  @apply w-[2.4rem] px-1 py-1 flex items-center rounded-full bg-textColor dark:bg-themeColor
+}
+
+.toggle-btn>div {
+  @apply w-[0.8rem] h-[0.8rem] rounded-full bg-white;
+  @apply dark:ml-[1.1rem] transition-all duration-300 ease-in-out
+}
+
+.sidebar-hide {
+  @apply mx-auto py-3 rounded flex justify-center items-center gap-x-4 font-bold hover:opacity-60
+}
+
+.sidebar-show {
+  @apply w-[3.65rem] py-[0.85rem] max-h-min rounded-r-full fixed bg-themeColor hover:bg-themeColor-hover bottom-[1.75rem] z-10
+}
