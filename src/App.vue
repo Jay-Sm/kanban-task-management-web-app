@@ -122,9 +122,26 @@
           <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
         </svg>
       </button>
+
       <div class="kanban left-[18.75rem]">
-        <div class="ml-[2rem]">
-          stuff here
+        <div v-for="(status, index) in  boards[currentBoard].statuses " :key="index" class="status">
+
+          <div class="status-title">
+            <div class="w-4 h-4 rounded-full" :style="{ backgroundColor: status.color }"></div>
+            <p>{{ status.name.toUpperCase() }} ({{ status.cards.length }})</p>
+          </div>
+
+          <div class="status-cards">
+            <div v-for="(card, index) in status.cards" :key="index">
+              <p class="text-sm font-bold">
+                {{ card.title }}
+              </p>
+
+              <p class="text-xs font-semibold text-textColor">
+                0 of {{ card.subtasks.length }} subtasks
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -159,28 +176,46 @@ const boards = ref([
     title: 'Example Board',
     statuses: [{
       name: 'To Do',
-      color: '#49c4e5'
+      color: '#49c4e6',
+      cards: [
+        {
+          title: 'Example Card 1',
+          description: 'Example Description 1',
+          subtasks: [
+            { name: 'Example Subtask 1', done: false },
+            { name: 'Example Subtask 2', done: false }
+          ]
+        },
+        {
+          title: 'Example Card 1',
+          description: 'Example Description 1',
+          subtasks: [
+            { name: 'Example Subtask 1', done: false },
+            { name: 'Example Subtask 2', done: false }
+          ]
+        }
+      ]
     },
     {
       name: 'Doing',
-      color: '#8471f2'
+      color: '#8471f2',
+      cards: [
+        {
+          title: 'Example Card 1',
+          description: 'Example Description 1',
+          subtasks: [
+            { name: 'Example Subtask 1', done: false },
+            { name: 'Example Subtask 2', done: false }
+          ]
+        }
+      ]
     },
     {
       name: 'Done',
-      color: '#67e2ae'
+      color: '#67e2ae',
+      cards: []
     },
     ],
-    cards: [
-      {
-        title: 'Example Card 1',
-        description: 'Example Description 1',
-        subtasks: [
-          { name: 'Example Subtask 1', done: false },
-          { name: 'Example Subtask 2', done: false }
-        ],
-        status: 'To Do'
-      }
-    ]
   },
 
   {
@@ -202,7 +237,4 @@ const boards = ref([
 
 </script>
 
-<style>
-
-
-</style>
+<style></style>
