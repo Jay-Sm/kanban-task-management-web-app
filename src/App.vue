@@ -125,7 +125,6 @@
 
       <div class="kanban left-[18.75rem]">
         <div v-for="(status, index) in  boards[currentBoard].statuses " :key="index" class="status">
-
           <div class="status-title">
             <div class="w-4 h-4 rounded-full" :style="{ backgroundColor: status.color }"></div>
             <p>{{ status.name.toUpperCase() }} ({{ status.cards.length }})</p>
@@ -144,7 +143,17 @@
           </div>
 
           <div v-else class="status-cards-none"></div>
+
+          <div class="status">
+            <div class="status-title">
+
+            </div>
+          </div>
         </div>
+
+        <button class="status-add">
+          + New Column
+        </button>
       </div>
     </div>
   </div>

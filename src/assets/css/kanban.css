@@ -14,7 +14,7 @@
 }
 
 .status {
-  @apply flex flex-col ml-[2rem];
+  @apply w-[17.5rem] flex flex-col ml-[2rem];
 }
 
 .status-title {
@@ -22,7 +22,7 @@
 }
 
 .status .status-title > p {
-  @apply w-[17.5rem] text-xs font-bold text-textColor tracking-[0.15em];
+  @apply w-full text-xs font-bold text-textColor tracking-[0.15em];
 }
 
 .status-cards {
@@ -36,4 +36,10 @@
 
 .status-cards-none {
   @apply w-full h-4/5 border-2 border-borderColor border-dashed rounded-lg border-opacity-40
+}
+
+.status-add {
+  @apply w-[17.5rem] h-4/5 rounded-lg mt-[3rem] ml-[2rem];
+  @apply bg-gradient-to-b from-[#cee6fb55] via-[#cee6fb55] dark:from-[#79849333] dark:via-[#828fa31a] to-transparent;
+  @apply text-textColor hover:text-opacity-65 dark:text-opacity-100 dark:hover:text-themeColor-hover text-3xl font-bold flex justify-center items-center
 }
