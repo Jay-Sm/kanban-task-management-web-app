@@ -39,7 +39,8 @@
         </div>
 
         <div class="flex flex-col gap-y-2 mb-auto">
-          <div class="board-select selected">
+          <button v-for="(item, index) in boardTitles" :key="index" @click="currentBoard = index" class="board-select"
+            :class="{ 'selected': item === boardTitles[currentBoard] }">
             <svg class="ml-7" fill="currentColor" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 
                 2.888 0 0 1 13.111 16H2.89A2.889 2.889 0 0 1 0 13.111V2.89Zm1.333 5.555v4.667c0 .859.697 
@@ -49,25 +50,11 @@
               </path>
             </svg>
             <p>
-              Title Here
+              {{ item }}
             </p>
-          </div>
+          </button>
 
-          <div class="board-select">
-            <svg class="ml-7" fill="currentColor" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 
-                2.888 0 0 1 13.111 16H2.89A2.889 2.889 0 0 1 0 13.111V2.89Zm1.333 5.555v4.667c0 .859.697 
-                1.556 1.556 1.556h6.889V8.444H1.333Zm8.445-1.333V1.333h-6.89A1.556 1.556 0 0 0 1.334 
-                2.89V7.11h8.445Zm4.889-1.333H11.11v4.444h3.556V5.778Zm0 5.778H11.11v3.11h2a1.556 1.556 
-                0 0 0 1.556-1.555v-1.555Zm0-7.112V2.89a1.555 1.555 0 0 0-1.556-1.556h-2v3.111h3.556Z">
-              </path>
-            </svg>
-            <p>
-              Title Here
-            </p>
-          </div>
-
-          <button class="board-create">
+          <button class="board-create" :disabled="boardTitles.length >= 3">
             <svg class="ml-7" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
               <path fill="currentColor"
                 d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 2.888 0 0 1 
@@ -111,7 +98,6 @@
                 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
             </svg>
           </div>
-
           <button @click="toggleSidebar()" class="sidebar-hide">
             <svg class="min-w-[1.4rem] min-h-[1.4rem] fill-textColor" width="16" height="16" viewBox="0 0 16 16"
               xmlns="http://www.w3.org/2000/svg">
@@ -135,23 +121,20 @@
           <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
           <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
         </svg>
-
       </button>
-
       <div class="kanban left-[18.75rem]">main content</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const navDropDown = ref(false)
 const preferDark = ref(false)
 
 function swtichTheme() {
   preferDark.value = !preferDark.value
-
   const html = document.querySelector('html')
   html.classList.toggle('dark')
 }
@@ -164,6 +147,16 @@ function toggleSidebar() {
   sidebar.classList.toggle('sidebar-hidden')
   kanban.classList.toggle('!left-[0rem]')
 }
+
+// Board Logic
+const currentBoard = ref(0)
+const boardTitles = ref(['Example Board', 'Example Board 2', 'Example Board 3',])
+
+// watch(() => currentBoard.value, (newValue) => {
+//   if (newvalue >= 6) {
+    
+//   }
+// }, {immediate:true})
 </script>
 
 <style>
@@ -236,7 +229,7 @@ header .logo-container img {
 }
 
 .board-create {
-  @apply w-[17.5rem] py-3 flex flex-row items-center gap-x-4 font-bold text-themeColor hover:text-themeColor-hover
+  @apply w-[17.5rem] py-3 flex flex-row items-center gap-x-4 font-bold text-themeColor hover:text-themeColor-hover disabled:opacity-45
 }
 
 .theme-toggle {
