@@ -144,11 +144,6 @@
 
           <div v-else class="status-cards-none"></div>
 
-          <div class="status">
-            <div class="status-title">
-
-            </div>
-          </div>
         </div>
 
         <button class="status-add">

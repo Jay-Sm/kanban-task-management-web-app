@@ -4,7 +4,7 @@
 }
 
 .kanban {
-  @apply relative w-4/5 top-0 bottom-0 pt-[1.5rem] flex overflow-x-scroll overflow-y-scroll;
+  @apply absolute top-0 bottom-0 pt-[1.5rem] flex overflow-x-scroll overflow-y-scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
@@ -14,7 +14,7 @@
 }
 
 .status {
-  @apply w-[17.5rem] flex flex-col ml-[2rem];
+  @apply min-w-[17.5rem] flex flex-col ml-[2rem];
 }
 
 .status-title {
@@ -39,7 +39,7 @@
 }
 
 .status-add {
-  @apply w-[17.5rem] h-4/5 rounded-lg mt-[3rem] ml-[2rem];
+  @apply min-w-[17.5rem] h-4/5 rounded-lg mt-[3rem] mx-[2rem];
   @apply bg-gradient-to-b from-[#cee6fb55] via-[#cee6fb55] dark:from-[#79849333] dark:via-[#828fa31a] to-transparent;
   @apply text-textColor hover:text-opacity-65 dark:text-opacity-100 dark:hover:text-themeColor-hover text-3xl font-bold flex justify-center items-center
 }
