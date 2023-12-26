@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div @click.capture="navDropDown = false" class="wrapper">
     <header>
       <div class="logo-container">
         <img :class="{ 'hidden': !preferDark }" src="./assets/images/logo-light.svg">
@@ -13,7 +13,7 @@
             + Add New Task
           </button>
 
-          <button @click="navDropDown = !navDropDown" class="nav-settings">
+          <button @click="navDropDown = true" class="nav-settings">
             <svg class="min-w-[1.6rem] min-h-[1.6rem] fill-textColor" fill="currentColor" width="16" height="16"
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
               <path
