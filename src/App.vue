@@ -1,5 +1,6 @@
 <template>
-  <EditBoard />
+  <EditBoard v-if="editingBoard" @closeBoard="editingBoard = false" :states="[1, 2, 3, 4]" />
+  <!-- <EditBoard :states="boards[currentBoard]."/> -->
 
   <div @click.capture="navDropDown = false" class="wrapper">
     <header>
@@ -24,7 +25,7 @@
           </button>
 
           <div class="nav-dropdown" :class="{ 'hidden': !navDropDown }">
-            <button class="text-textColor hover:opacity-50">Edit Board</button>
+            <button @click="editingBoard = true" class="text-textColor hover:opacity-50">Edit Board</button>
             <button class="text-textColor hover:opacity-50">Clear Board</button>
             <button class="text-red-500 hover:opacity-50">Delete Board</button>
             <button class="text-red-500 hover:opacity-50">Reset Boards</button>
@@ -55,7 +56,6 @@
               {{ board.title }}
             </p>
           </button>
-
           <button class="board-create" :disabled="boards.length >= 6">
             <svg class="ml-7" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
               <path fill="currentColor"
@@ -271,6 +271,9 @@ const boards = ref([
     ],
   },
 ])
+
+const editingBoard = ref(false)
+
 
 </script>
 
