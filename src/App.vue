@@ -1,5 +1,5 @@
 <template>
-  <AddBoard v-if="addingBoard" @closeBoard="addingBoard = false" :states="['To Do', 'Doing', 'Done']" :state="'To Do'" />
+  <AddBoard v-if="addingBoard" @closeBoard="addingBoard = false" :states="currentStates" :status="currentStates[0]" />
   <!-- <EditBoard :states="boards[currentBoard]."/> -->
 
   <div @click.capture="navDropDown = false" class="wrapper">
@@ -156,7 +156,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, toRaw } from 'vue'
 import AddBoard from '@/components/AddBoard.vue'
 
 const navDropDown = ref(false)
@@ -179,6 +179,7 @@ function toggleSidebar() {
 
 // Board Logic
 const currentBoard = ref(0)
+const currentStates = ref([])
 const boards = ref([
   {
     title: 'Example Board',
@@ -272,7 +273,29 @@ const boards = ref([
   },
 ])
 
+
+boards.value[currentBoard.value].statuses.forEach(state => {
+  currentStates.value.push(state.name)
+});
+
+watch(() => currentBoard.value, (newVal) => {
+  currentStates.value = []
+
+  boards.value[currentBoard.value].statuses.forEach(state => {
+    currentStates.value.push(state.name)
+  });
+
+  console.log(toRaw(currentStates.value));
+})
+
+
+
+
+
+
 const addingBoard = ref(false)
+
+
 
 
 </script>
