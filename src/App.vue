@@ -1,5 +1,5 @@
 <template>
-  <EditBoard v-if="editingBoard" @closeBoard="editingBoard = false" :states="[1, 2, 3, 4]" />
+  <AddBoard v-if="addingBoard" @closeBoard="addingBoard = false" :states="[1, 2, 3, 4]" />
   <!-- <EditBoard :states="boards[currentBoard]."/> -->
 
   <div @click.capture="navDropDown = false" class="wrapper">
@@ -12,7 +12,7 @@
         <h1>{{ boards[currentBoard].title }}</h1>
 
         <div class="nav-buttons">
-          <button class="new-task">
+          <button @click="addingBoard = true" class="new-task">
             + Add New Task
           </button>
 
@@ -25,7 +25,7 @@
           </button>
 
           <div class="nav-dropdown" :class="{ 'hidden': !navDropDown }">
-            <button @click="editingBoard = true" class="text-textColor hover:opacity-50">Edit Board</button>
+            <button class="text-textColor hover:opacity-50">Edit Board</button>
             <button class="text-textColor hover:opacity-50">Clear Board</button>
             <button class="text-red-500 hover:opacity-50">Delete Board</button>
             <button class="text-red-500 hover:opacity-50">Reset Boards</button>
@@ -157,7 +157,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import EditBoard from '@/components/EditBoard.vue'
+import AddBoard from '@/components/AddBoard.vue'
 
 const navDropDown = ref(false)
 const preferDark = ref(false)
@@ -272,7 +272,7 @@ const boards = ref([
   },
 ])
 
-const editingBoard = ref(false)
+const addingBoard = ref(false)
 
 
 </script>

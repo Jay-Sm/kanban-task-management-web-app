@@ -32,17 +32,15 @@
 
         <label for="Status">Status</label>
         <div class="flex flex-col relative">
-          <button @click="dropdown = !dropdown" v-on:blur="dropdown = false" class="dropDownSelect">
+          <button type="button" @click="dropDown = !dropDown" v-on:blur="dropDown = false" class="dropDownSelect">
             To Do
-
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-themeColor" :class="{ 'rotate-180': dropdown }"
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-themeColor" :class="{ 'rotate-180': dropDown }"
                 width="12" height="12" viewBox="0 0 512 512">
                 <path fill="none" stroke="#635fc7" stroke-linecap="square" stroke-miterlimit="10" stroke-width="80"
                   d="M112 184l144 144 144-144" />
               </svg>
             </div>
-
           </button>
 
           <div>
@@ -50,8 +48,9 @@
           </div>
         </div>
 
-        <button class="bg-themeColor text-white text-sm py-2 mt-2 hover:opacity-60 rounded-full font-bold">Create
-          Task</button>
+        <button class="bg-themeColor text-white text-sm py-2 mt-2 hover:opacity-60 rounded-full font-bold">
+          Create Task
+        </button>
       </form>
     </div>
   </div>
@@ -60,7 +59,7 @@
 <script setup>
 import { defineProps, ref } from 'vue';
 
-const dropdown = ref(false)
+const dropDown = ref(false)
 
 const props = defineProps({
   states: {
