@@ -8,7 +8,7 @@ header .logo-container {
 }
 
 header .logo-container img {
-  @apply ml-[2rem]
+  @apply ml-[2rem] pointer-events-none select-none
 }
 
 .nav {

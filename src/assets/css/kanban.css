@@ -18,7 +18,7 @@
 }
 
 .status-title {
-  @apply flex flex-row gap-x-4 mb-8;
+  @apply flex flex-row gap-x-4 mb-8 pointer-events-none select-none;
 }
 
 .status .status-title > p {
@@ -29,8 +29,8 @@
   @apply flex flex-col gap-y-6;
 }
 
-.status-cards > div {
-  @apply w-full h-[6.25rem] rounded-lg pt-[1.7rem] px-4 flex flex-col gap-y-2;
+.status-cards > button {
+  @apply w-full h-[6.25rem] rounded-lg pt-[1.7rem] px-4 flex flex-col items-start gap-y-2;
   @apply bg-background2 dark:bg-background2-dark border border-borderColor dark:border-borderColor-dark shadow-md dark:shadow-slate-700;
 }
 

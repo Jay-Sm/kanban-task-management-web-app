@@ -1,4 +1,6 @@
 <template>
+  <EditBoard />
+
   <div @click.capture="navDropDown = false" class="wrapper">
     <header>
       <div class="logo-container">
@@ -35,7 +37,7 @@
     <div class="main">
       <div class="sidebar">
         <div class="board-number">
-          <p class="ml-[2rem]">ALL BOARDS (#)</p>
+          <p class="ml-[2rem] pointer-events-none select-none">ALL BOARDS (#)</p>
         </div>
 
         <div class="flex flex-col gap-y-2 mb-auto">
@@ -131,7 +133,7 @@
           </div>
 
           <div v-if="status.cards.length > 0" class="status-cards">
-            <div v-for="(card, index) in status.cards" :key="index">
+            <button v-for="(card, index) in status.cards" :key="index">
               <p class="text-sm font-bold">
                 {{ card.title }}
               </p>
@@ -139,11 +141,10 @@
               <p class="text-xs font-semibold text-textColor">
                 0 of {{ card.subtasks.length }} subtasks
               </p>
-            </div>
+            </button>
           </div>
 
           <div v-else class="status-cards-none"></div>
-
         </div>
 
         <button class="status-add">
@@ -156,6 +157,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import EditBoard from '@/components/EditBoard.vue'
 
 const navDropDown = ref(false)
 const preferDark = ref(false)
