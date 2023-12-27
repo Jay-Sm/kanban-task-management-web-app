@@ -35,7 +35,7 @@
           <button type="button" @click="dropDown = !dropDown" v-on:blur="dropDown = false" class="dropDownSelect">
             To Do
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-themeColor" :class="{ 'rotate-180': dropDown }"
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-themeColor duration-150" :class="{ 'rotate-180': dropDown }"
                 width="12" height="12" viewBox="0 0 512 512">
                 <path fill="none" stroke="#635fc7" stroke-linecap="square" stroke-miterlimit="10" stroke-width="80"
                   d="M112 184l144 144 144-144" />
@@ -43,8 +43,10 @@
             </div>
           </button>
 
-          <div>
-
+          <div v-if="dropDown" class="absolute bottom-[115%] left-0 right-0 py-4 px-4 bg-background-dark rounded flex flex-col gap-y-1">
+            <button v-for="(state, index) in props.states" :key="index" class="text-sm text-textColor hover:text-white flex items-start">
+              {{ state }}
+            </button>
           </div>
         </div>
 
@@ -64,6 +66,10 @@ const dropDown = ref(false)
 const props = defineProps({
   states: {
     type: Array,
+    required: true
+  },
+  state: {
+    type: String,
     required: true
   }
 })
@@ -89,15 +95,15 @@ form {
 }
 
 form label {
-  @apply text-xs text-textColor font-semibold
+  @apply text-xs text-white font-semibold
 }
 
 form textarea {
-  @apply w-full px-4 py-2 border-2 border-gray-300 dark:border-borderColor-dark rounded text-sm resize-none bg-transparent
+  @apply w-full px-4 py-2 border-2 border-gray-300 dark:border-[#828fa366] rounded text-sm resize-none bg-transparent
 }
 
 form .dropDownSelect {
-  @apply border-2 border-gray-300 dark:border-borderColor-dark rounded flex justify-between py-2 px-3 text-xs font-semibold focus:border-themeColor
+  @apply border-2 border-gray-300 dark:border-[#828fa366] rounded flex justify-between py-2 px-3 text-xs font-semibold focus:border-themeColor
 }
 
 form .newSubTask {
