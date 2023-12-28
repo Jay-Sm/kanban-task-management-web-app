@@ -37,7 +37,7 @@
 
         <label for="Status">Status</label>
         <div class="flex flex-col relative">
-          <button type="button" @click="dropDown = !dropDown" class="dropDownSelect"> {{ status }}
+          <button type="button" @click="dropDown = !dropDown" class="dropDownSelect"> {{ status.name }}
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" class="stroke-themeColor duration-150"
                 :class="{ 'rotate-180': dropDown }" width="12" height="12" viewBox="0 0 512 512">
@@ -49,7 +49,7 @@
           <div v-if="dropDown" class="drop-down">
             <button type="button" v-for="(state, index) in states" :key="index" @click="status = state"
               class="drop-down-option">
-              {{ state }}
+              {{ state.name }}
             </button>
           </div>
         </div>
@@ -73,7 +73,7 @@ const props = defineProps({
     required: true
   },
   status: {
-    type: String,
+    type: Object,
     required: true
   }
 })
@@ -90,7 +90,8 @@ function makeTask() {
   const task = {
     title: title.value,
     description: description.value,
-    subtasks: toRaw(subtasks.value)
+    subtasks: toRaw(subtasks.value),
+    index: status.value.index 
   }
 
   return task
