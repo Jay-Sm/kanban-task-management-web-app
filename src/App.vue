@@ -1,5 +1,5 @@
 <template>
-  <AddBoard v-if="addingBoard" @closeBoard="addingBoard = false" :states="currentStates" :status="currentStates[0]" />
+  <AddBoard v-if="addingBoard" @closeBoard="addingBoard = false" @addTask="console.log($event)" :states="currentStates" :status="currentStates[0]" />
   <!-- <EditBoard :states="boards[currentBoard]."/> -->
 
   <div @click.capture="navDropDown = false" class="wrapper">

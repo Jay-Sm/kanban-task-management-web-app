@@ -3,7 +3,7 @@
     <div v-on:click.capture="dropDown = false" class="container">
       <h3>Add New Task</h3>
 
-      <form @submit.prevent="console.log($event)">
+      <form @submit.prevent="$emit('addTask', makeTask())">
         <label for="Title">Title</label>
         <textarea cols="1" rows="1" type="text" name="title" id="title" v-model="title" class="h-[2.5rem]"></textarea>
 
@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from 'vue';
+import { defineProps, ref, toRaw } from 'vue';
 
 const dropDown = ref(false)
 
@@ -78,13 +78,23 @@ const props = defineProps({
   }
 })
 
-const title = ref('Example Title')
-const description = ref('Example Description')
-const subtasks = ref(['stuff here'])
+const title = ref('')
+const description = ref('')
+const subtasks = ref([''])
 
 
 const status = ref(props.status)
 const states = ref(props.states)
+
+function makeTask() {
+  const task = {
+    title: title.value,
+    description: description.value,
+    subtasks: toRaw(subtasks.value)
+  }
+
+  return task
+}
 
 </script>
 
