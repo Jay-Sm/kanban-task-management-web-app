@@ -54,9 +54,7 @@
           </div>
         </div>
 
-        <button class="create-task">
-          Create Task
-        </button>
+        <button class="create-task">Create Task</button>
       </form>
     </div>
   </div>

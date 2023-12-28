@@ -1,6 +1,11 @@
 <template>
-  <AddBoard v-if="addingBoard" @closeBoard="addingBoard = false" @addTask="addTaskToCurrentBoard($event)"
+  <AddTask v-if="addingTask" @closeBoard="addingTask = false" @addTask="addTaskToCurrentBoard($event)"
     :states="currentStates" :status="currentStates[0]" :index="0" />
+
+  <EditBoard v-if="editingBoard" @closeBoard="editingBoard = false" :title="boards[currentBoard].title"
+    :columns="currentStates" />
+
+
 
   <div @click.capture="navDropDown = false" class="wrapper">
     <header>
@@ -12,7 +17,7 @@
         <h1>{{ boards[currentBoard].title }}</h1>
 
         <div class="nav-buttons">
-          <button @click="addingBoard = true" class="new-task">
+          <button @click="addingTask = true" class="new-task">
             + Add New Task
           </button>
 
@@ -25,7 +30,7 @@
           </button>
 
           <div class="nav-dropdown" :class="{ 'hidden': !navDropDown }">
-            <button class="text-textColor hover:opacity-50">Edit Board</button>
+            <button @click="editingBoard = true" class="text-textColor hover:opacity-50">Edit Board</button>
             <button class="text-textColor hover:opacity-50">Clear Board</button>
             <button class="text-red-500 hover:opacity-50">Delete Board</button>
             <button class="text-red-500 hover:opacity-50">Reset Boards</button>
@@ -157,7 +162,9 @@
 
 <script setup>
 import { ref, watch, toRaw } from 'vue'
-import AddBoard from '@/components/AddBoard.vue'
+import AddTask from '@/components/AddTask.vue'
+import EditBoard from '@/components/EditBoard.vue'
+
 
 const navDropDown = ref(false)
 const preferDark = ref(false)
@@ -178,8 +185,8 @@ function toggleSidebar() {
 }
 
 // Board Logic
-const addingBoard = ref(false)
-
+const addingTask = ref(false)
+const editingBoard = ref(false)
 
 
 const currentBoard = ref(0)
@@ -309,10 +316,10 @@ function addTaskToCurrentBoard(task) {
   boards.value[currentBoard.value].statuses[task.index].cards.push({
     title: task.title,
     description: task.description,
-    subtasks: task.subtasks, 
+    subtasks: task.subtasks,
   })
 
-  addingBoard.value = false
+  addingTask.value = false
 }
 
 
