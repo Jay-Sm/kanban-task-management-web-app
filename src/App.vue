@@ -1,6 +1,6 @@
 <template>
-  <AddBoard v-if="addingBoard" @closeBoard="addingBoard = false" @addTask="console.log($event)" :states="currentStates" :status="currentStates[0]" />
-  <!-- <EditBoard :states="boards[currentBoard]."/> -->
+  <AddBoard v-if="addingBoard" @closeBoard="addingBoard = false" @addTask="addTaskToCurrentBoard($event)"
+    :states="currentStates" :status="currentStates[0]" :index="0" />
 
   <div @click.capture="navDropDown = false" class="wrapper">
     <header>
@@ -178,6 +178,10 @@ function toggleSidebar() {
 }
 
 // Board Logic
+const addingBoard = ref(false)
+
+
+
 const currentBoard = ref(0)
 const currentStates = ref([])
 const boards = ref([
@@ -274,26 +278,46 @@ const boards = ref([
 ])
 
 
+const tempIndex = ref(-1)
 boards.value[currentBoard.value].statuses.forEach(state => {
-  currentStates.value.push(state.name)
+  tempIndex.value += 1
+
+  currentStates.value.push({
+    name: state.name,
+    index: tempIndex.value,
+  })
 });
 
 watch(() => currentBoard.value, (newVal) => {
   currentStates.value = []
+  const index = ref(-1)
 
   boards.value[currentBoard.value].statuses.forEach(state => {
-    currentStates.value.push(state.name)
+    index.value += 1
+    currentStates.value.push({
+      name: state.name,
+      index: index.value,
+    })
   });
 
   console.log(toRaw(currentStates.value));
 })
 
+function addTaskToCurrentBoard(task) {
+  console.log(toRaw(boards.value[currentBoard.value].statuses[task.index].cards));
+
+  boards.value[currentBoard.value].statuses[task.index].cards.push({
+    title: task.title,
+    description: task.description,
+    subtasks: task.subtasks, 
+  })
+
+  addingBoard.value = false
+}
 
 
 
 
-
-const addingBoard = ref(false)
 
 
 
