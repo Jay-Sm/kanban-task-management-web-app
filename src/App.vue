@@ -292,6 +292,7 @@ boards.value[currentBoard.value].statuses.forEach(state => {
   currentStates.value.push({
     name: state.name,
     index: tempIndex.value,
+    cards: state.cards.length ? true : false
   })
 });
 
@@ -301,18 +302,16 @@ watch(() => currentBoard.value, (newVal) => {
 
   boards.value[currentBoard.value].statuses.forEach(state => {
     index.value += 1
+
     currentStates.value.push({
       name: state.name,
       index: index.value,
+      cards: state.cards.length ? true : false
     })
   });
-
-  console.log(toRaw(currentStates.value));
 })
 
 function addTaskToCurrentBoard(task) {
-  console.log(toRaw(boards.value[currentBoard.value].statuses[task.index].cards));
-
   boards.value[currentBoard.value].statuses[task.index].cards.push({
     title: task.title,
     description: task.description,
@@ -321,13 +320,6 @@ function addTaskToCurrentBoard(task) {
 
   addingTask.value = false
 }
-
-
-
-
-
-
-
 
 </script>
 

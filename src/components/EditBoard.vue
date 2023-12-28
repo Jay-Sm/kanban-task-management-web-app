@@ -3,7 +3,7 @@
     <div class="container">
       <h3>Edit Board</h3>
 
-      <form>
+      <form @submit.prevent="console.log(toRaw(columns))">
         <label for="Name">Name</label>
         <textarea cols="1" rows="1" type="text" name="title" id="name" v-model="name" class="h-[2.5rem]"></textarea>
 
@@ -12,7 +12,7 @@
           <div v-for="(column, index) in columns" :key="index" class="flex flex-row gap-x-4">
             <textarea type="text" name="columns" id="columns" v-model="columns[index].name" class="h-[2.5rem]"></textarea>
 
-            <button type="button" @click="columns.splice(index, 1)" class="text-textColor">
+            <button type="button" @click="columns.splice(index, 1)" class="text-textColor disabled:opacity-25" :disabled="column.cards">
               <svg fill="currentColor" height="16px" width="16px" version="1.1" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 460.775 460.775">
                 <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55
@@ -118,4 +118,5 @@ form .newSubTask {
 form .create-task {
   @apply bg-themeColor text-white text-sm py-2 mt-2 hover:opacity-60 rounded-full font-bold
 }
+
 </style>
